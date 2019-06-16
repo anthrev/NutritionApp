@@ -13,6 +13,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Calories Today"
+            android:background="@null"
+            android:clickable="false"
+            android:longClickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -25,48 +30,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3000"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:textSize="15sp" />
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="food"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="exercise"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="="
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="remaining"
+                android:background="@null"
+                android:clickable="false"
+                android:longClickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:layout_marginLeft="15dp"/>
 
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
     </LinearLayout>
 
 </RelativeLayout>
