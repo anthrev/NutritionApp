@@ -8,13 +8,18 @@
         android:title="@string/title_home" />
 
         <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_goals"
+        android:icon="@drawable/ic_fitness_center_black_24dp"
+        android:title="@string/nav_goals" />
 
         <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_food_diary"
+        android:icon="@drawable/ic_book_black_24dp"
+        android:title="@string/nav_food_diary" />
+
+        <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/ic_more_horiz_black_24dp"
+        android:title="@string/nav_more" />
 
 </menu>
