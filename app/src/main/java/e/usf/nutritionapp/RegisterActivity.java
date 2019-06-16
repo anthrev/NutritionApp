@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText mEmailField;
     private EditText mPasswordField;
     private EditText mPassword2Field;
-
+    private Button  mcreateAccountButton;
     private FirebaseAuth mAuth;
 
     @Override
@@ -39,12 +40,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mPasswordField = findViewById(R.id.fieldPassword);
         mPassword2Field = findViewById(R.id.fieldPassword2);
 
-        findViewById(R.id.createAccountButton).setOnClickListener(this);
+        mcreateAccountButton = findViewById(R.id.createAccountButton);
+        mcreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
-
-        Toolbar myChildToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myChildToolbar);
 
         // Get a support ActionBar corresponding to this toolbar
         ActionBar ab = getSupportActionBar();
