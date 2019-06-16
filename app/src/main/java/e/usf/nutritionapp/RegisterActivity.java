@@ -70,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             Log.d(TAG, "createUserWithEmail:success");
                             Toast.makeText(RegisterActivity.this, "Registered.",
                                     Toast.LENGTH_LONG).show();
-                            goToLogin();
+                            goToFirstTimeRegistration();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -120,5 +120,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+    }
+
+    public void goToFirstTimeRegistration() {
+
     }
 }
