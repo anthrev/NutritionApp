@@ -20,7 +20,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home,container,false);
-
         addMealButton = view.findViewById(R.id.add_meal_button);
 
         Log.d(TAG,"onCreateView: started");
@@ -29,7 +28,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment selectedFragment = new FoodDiaryFragment();
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                ((HomeActivity)getActivity()).setNavListener(selectedFragment);
             }
         });
 

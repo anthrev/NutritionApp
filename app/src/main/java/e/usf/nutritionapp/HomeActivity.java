@@ -11,15 +11,16 @@ import android.view.MenuItem;
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
+    BottomNavigationView bottomNav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        bottomNav = findViewById(R.id.bottom_nav);
         Log.d(TAG, "onCreate: started");
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -52,4 +53,10 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public void setNavListener(Fragment fragment){
+        bottomNav.setSelectedItemId(fragment.getId());
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                fragment).commit();
+    }
 }

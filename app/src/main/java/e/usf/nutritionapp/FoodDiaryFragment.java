@@ -1,5 +1,6 @@
 package e.usf.nutritionapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -29,7 +30,9 @@ public class FoodDiaryFragment extends Fragment {
         addBreakfastItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent;
+                intent = new Intent(getContext(), AddBreakfastFoodItemActivity.class);
+                startActivityForResult(intent, 1);
             }
         });
 
