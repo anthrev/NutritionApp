@@ -3,4 +3,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="nav_goals">Goals</string>
+    <string name="nav_food_diary">Food Diary</string>
+    <string name="nav_more">More</string>
 </resources>
