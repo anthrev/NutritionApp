@@ -123,6 +123,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void goToFirstTimeRegistration() {
-
+        Intent intent = new Intent(this, AfterRegistrationActivity.class);
+        startActivity(intent);
     }
 }

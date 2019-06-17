@@ -1,12 +1,48 @@
 package e.usf.nutritionapp;
 
 public class Member {
-    String goal;
-    String gender;
-    int height_feet;
-    int height_inches;
-    int weight;
-    int goal_weight;
-    int goal_weight_loss;
+    private String gender, goals;
+    private float weight, goalWeight;
+    private double weeklyGoals;
+
+    public String getGender(){
+        return gender;
+    }
+
+    public void setGender(String gender){
+        this.gender = gender;
+    }
+
+    public String getGoals(){
+        return goals;
+    }
+
+    public void setGoals(String goals){
+        this.goals = goals;
+    }
+
+    public float getWeight(){
+        return weight;
+    }
+
+    public void setWeight(float weight){
+        this.weight = weight;
+    }
+
+    public float getGoalWeight(){
+        return goalWeight;
+    }
+
+    public void setGoalWeight(float goalWeight){
+        this.goalWeight = goalWeight;
+    }
+
+    public double getWeeklyGoals(){
+        return weeklyGoals;
+    }
+
+    public void setWeeklyGoals(double weeklyGoals){
+        this.weeklyGoals = weeklyGoals;
+    }
 
 }
