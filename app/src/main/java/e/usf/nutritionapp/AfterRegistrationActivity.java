@@ -19,8 +19,10 @@ public class AfterRegistrationActivity extends AppCompatActivity {
     float weight = 0;
     float goalWeight = 0;
     double weeklyGoals = 0;
+    double height = 0;
+    double age = 0;
 
-    EditText weightText, goalWeightText;
+    EditText weightText, goalWeightText, heightText, ageText;
     Button submitButton;
 
     @Override
@@ -31,6 +33,23 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         weightText = findViewById(R.id.weight_text);
         goalWeightText = findViewById(R.id.goal_weight_text);
         submitButton = findViewById(R.id.submit_button);
+        heightText = findViewById(R.id.height);
+        ageText = findViewById(R.id.age);
+
+
+        heightText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                height = Double.valueOf(heightText.getText().toString());
+            }
+        });
+
+        ageText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                age = Double.valueOf(ageText.getText().toString());
+            }
+        });
 
         weightText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +68,7 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(goals == null || gender == null || weight == 0 || goalWeight == 0 || weeklyGoals == 0){
+                if(goals == null || gender == null || weight == 0 || goalWeight == 0 || weeklyGoals == 0 || age == 0 || height == 0){
                     Context context = getApplicationContext();
                     String text = "You are missing some fields";
                     int duration = Toast.LENGTH_SHORT;
@@ -63,10 +82,14 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                     newMember.setGoalWeight(goalWeight);
                     newMember.setWeeklyGoals(weeklyGoals);
                     newMember.setWeight(weight);
+                    newMember.setHeight(height);
+                    newMember.setAge(age);
 
                     String memberInfo = "Goals: " + newMember.getGoals()
                             + "\nGender: " + newMember.getGender()
                             + "\nWeight: " + newMember.getWeight()
+                            + "\nHeight: " + newMember.getHeight()
+                            + "\nAge: " + newMember.getAge()
                             + "\nGoal Weight: " + newMember.getGoalWeight()
                             + "\nWeekly Goals: " + newMember.getWeeklyGoals();
                     Log.d(TAG, "Member log successful");
