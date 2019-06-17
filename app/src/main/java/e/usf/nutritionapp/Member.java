@@ -4,6 +4,7 @@ public class Member {
     private String gender, goals;
     private float weight, goalWeight;
     private double weeklyGoals, age, height;
+    double caloriesBurnedPerDay;
 
     public String getGender(){
         return gender;
@@ -59,5 +60,17 @@ public class Member {
 
     public double getAge() {
         return age;
+    }
+
+    public double getCaloriesBurnedPerDay(){
+        if(getGender() == "Male"){
+            return (66 + (6.23 * getWeight()) + (12.7 * getHeight()) - (6.8 * getAge()));
+        } else {
+            return(655 + (4.35*getWeight()) + (4.7 * getHeight()) - (4.7*getAge()));
+        }
+    }
+
+    public void setCaloriesBurnedPerDay(double caloriesBurnedPerDay){
+        this.caloriesBurnedPerDay = caloriesBurnedPerDay;
     }
 }

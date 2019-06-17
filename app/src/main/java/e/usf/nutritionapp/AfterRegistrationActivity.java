@@ -12,6 +12,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AfterRegistrationActivity extends AppCompatActivity {
 
     String TAG = "First Time Registration: ";
@@ -21,6 +26,7 @@ public class AfterRegistrationActivity extends AppCompatActivity {
     double weeklyGoals = 0;
     double height = 0;
     double age = 0;
+    double caloriesBurnedPerDay;
 
     EditText weightText, goalWeightText, heightText, ageText;
     Button submitButton;
@@ -84,6 +90,8 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                     newMember.setWeight(weight);
                     newMember.setHeight(height);
                     newMember.setAge(age);
+                    newMember.setCaloriesBurnedPerDay(newMember.getCaloriesBurnedPerDay());
+
 
                     String memberInfo = "Goals: " + newMember.getGoals()
                             + "\nGender: " + newMember.getGender()
@@ -91,9 +99,13 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                             + "\nHeight: " + newMember.getHeight()
                             + "\nAge: " + newMember.getAge()
                             + "\nGoal Weight: " + newMember.getGoalWeight()
-                            + "\nWeekly Goals: " + newMember.getWeeklyGoals();
+                            + "\nWeekly Goals: " + newMember.getWeeklyGoals()
+                            + "\nCalories Burned Per Day: " + newMember.getCaloriesBurnedPerDay();
+
                     Log.d(TAG, "Member log successful");
                     Log.d(TAG, memberInfo);
+
+                    saveUserInfo(newMember);
 
                     Intent intent = new Intent(v.getContext(), HomeActivity.class);
                     startActivity(intent);
@@ -151,6 +163,17 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                     break;
                 }
         }
+    }
+
+    public void saveUserInfo(Member member){
+        FirebaseAuth firebaseAuth;
+        DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference.child(user.getUid()).setValue(member);
+        Toast.makeText(this, "Information Saved...", Toast.LENGTH_SHORT).show();
+
     }
 }
 
