@@ -42,37 +42,15 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         ageText = findViewById(R.id.age);
 
 
-        heightText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                height = Double.valueOf(heightText.getText().toString());
-            }
-        });
-
-        ageText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                age = Double.valueOf(ageText.getText().toString());
-            }
-        });
-
-        weightText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                weight = Float.valueOf(weightText.getText().toString());
-            }
-        });
-
-        goalWeightText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goalWeight = Float.valueOf(weightText.getText().toString());
-            }
-        });
-
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                height = Double.valueOf(heightText.getText().toString());
+                age = Double.valueOf(ageText.getText().toString());
+                weight = Float.valueOf(weightText.getText().toString());
+                goalWeight = Float.valueOf(weightText.getText().toString());
+
                 if(goals == null || gender == null || weight == 0 || goalWeight == 0 || weeklyGoals == 0 || age == 0 || height == 0){
                     Context context = getApplicationContext();
                     String text = "You are missing some fields";
@@ -107,7 +85,7 @@ public class AfterRegistrationActivity extends AppCompatActivity {
 
                     saveUserInfo(newMember);
 
-                    Intent intent = new Intent(v.getContext(), HomeActivity.class);
+                    Intent intent = new Intent(v.getContext(), LoginActivity.class);
                     startActivity(intent);
                 }
             }
