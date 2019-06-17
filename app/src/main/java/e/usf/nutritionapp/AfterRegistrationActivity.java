@@ -26,7 +26,6 @@ public class AfterRegistrationActivity extends AppCompatActivity {
     double weeklyGoals = 0;
     double height = 0;
     double age = 0;
-    double caloriesBurnedPerDay;
 
     EditText weightText, goalWeightText, heightText, ageText;
     Button submitButton;
@@ -100,7 +99,8 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                             + "\nAge: " + newMember.getAge()
                             + "\nGoal Weight: " + newMember.getGoalWeight()
                             + "\nWeekly Goals: " + newMember.getWeeklyGoals()
-                            + "\nCalories Burned Per Day: " + newMember.getCaloriesBurnedPerDay();
+                            + "\nCalories Burned Per Day: " + newMember.getCaloriesBurnedPerDay()
+                            + "\nGoal Calories Per Day: " + newMember.getGoalCalories();
 
                     Log.d(TAG, "Member log successful");
                     Log.d(TAG, memberInfo);

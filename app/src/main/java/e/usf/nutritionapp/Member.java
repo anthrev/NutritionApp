@@ -5,6 +5,23 @@ public class Member {
     private float weight, goalWeight;
     private double weeklyGoals, age, height;
     double caloriesBurnedPerDay;
+    double goalCalories;
+
+    public Member(String gender, String goals, float weight, float goalWeight, double weeklyGoals, double age, double height, double caloriesBurnedPerDay, double goalCalories){
+        this.gender = gender;
+        this.goals = goals;
+        this.weight = weight;
+        this.goalWeight = goalWeight;
+        this.weeklyGoals = weeklyGoals;
+        this.age = age;
+        this.height = height;
+        this.caloriesBurnedPerDay = caloriesBurnedPerDay;
+        this.goalCalories = goalCalories;
+
+    }
+    public Member(){
+
+    }
 
     public String getGender(){
         return gender;
@@ -72,5 +89,31 @@ public class Member {
 
     public void setCaloriesBurnedPerDay(double caloriesBurnedPerDay){
         this.caloriesBurnedPerDay = caloriesBurnedPerDay;
+    }
+
+    public double getGoalCalories(){
+        if(getGoals() == "Lose Weight") {
+           if(getWeeklyGoals() == .5){
+               double caloriesToBurn = 3500 / 2;
+               double caloriesToBurnPerDay = caloriesToBurn / 7;
+               return (getCaloriesBurnedPerDay() - caloriesToBurnPerDay);
+           } else {
+               double caloriesToBurn = 3500;
+               double caloriesToBurnPerDay = caloriesToBurn / 7;
+               return (getCaloriesBurnedPerDay() - caloriesToBurnPerDay);
+           }
+        } else {
+            if(getWeeklyGoals() == .5){
+                double caloriesToConsume = 3500/ 2;
+                return (caloriesToConsume / 7 + getCaloriesBurnedPerDay());
+            } else {
+                double caloriesToConsume = 3500;
+                return (caloriesToConsume / 7 + getCaloriesBurnedPerDay());
+            }
+        }
+    }
+
+    public void setGoalCalories(double goalCalories){
+        this.goalCalories = goalCalories;
     }
 }

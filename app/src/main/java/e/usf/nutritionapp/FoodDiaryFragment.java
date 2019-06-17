@@ -16,11 +16,18 @@ public class FoodDiaryFragment extends Fragment {
     TextView addLunchItem;
     TextView addDinnerItem;
     TextView addSnackItem;
+    TextView goalCalories;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_food_diary,container,false);
+
+        HomeActivity activity = (HomeActivity) getActivity();
+        String goalCals = String.valueOf(activity.getGoalCalories());
+
+        goalCalories = view.findViewById(R.id.goal_calories);
+        goalCalories.setText(goalCals);
 
         addBreakfastItem = view.findViewById(R.id.add_food_breakfast);
         addLunchItem = view.findViewById(R.id.add_food_lunch);
