@@ -23,6 +23,9 @@ public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
     BottomNavigationView bottomNav;
     private double goalCalories;
+    private double weight;
+    private double goal_weight;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class HomeActivity extends AppCompatActivity {
         Member member = new Gson().fromJson(jsonMember, Member.class);
 
         goalCalories = member.getGoalCalories();
+        weight = member.getWeight();
+        goal_weight = member.getGoalWeight();
 
         bottomNav = findViewById(R.id.bottom_nav);
         Log.d(TAG, "onCreate: started");
@@ -85,5 +90,13 @@ public class HomeActivity extends AppCompatActivity {
 
     public double getGoalCalories(){
         return goalCalories;
+    }
+
+    public double getWeight(){
+        return weight;
+    }
+
+    public double getGoalWeight(){
+        return goal_weight;
     }
 }

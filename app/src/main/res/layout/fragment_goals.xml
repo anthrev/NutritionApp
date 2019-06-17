@@ -82,13 +82,13 @@
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:clickable="false"
-                android:longClickable="false"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:text="Weekly Goal" />
+                android:longClickable="false"
+                android:text="Change" />
 
             <android.support.v7.widget.AppCompatAutoCompleteTextView
-                android:id="@+id/weekly_goal"
+                android:id="@+id/change"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"

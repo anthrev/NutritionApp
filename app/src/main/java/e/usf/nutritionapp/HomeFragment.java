@@ -44,12 +44,9 @@ public class HomeFragment extends Fragment {
         goalText = view.findViewById(R.id.goal_calories);
         goalText.setText(String.valueOf(goalCalories));
 
-        addMealButton = view.findViewById(R.id.add_meal_button);
-
-
         Log.d(TAG,"onCreateView: started");
 
-
+        addMealButton = view.findViewById(R.id.add_meal_button);
 
         addMealButton.setOnClickListener(new View.OnClickListener() {
             @Override
