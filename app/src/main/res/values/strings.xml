@@ -15,4 +15,9 @@
     <string name="account_question">Don\'t have an account?</string>
     <string name="calories_remaining">Calories Remaining</string>
 
+    <string-array name="my_foods">
+        <item>Pizza</item>
+        <item>Ice Cream</item>
+    </string-array>
+
 </resources>

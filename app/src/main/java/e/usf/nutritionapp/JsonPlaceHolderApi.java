@@ -12,7 +12,7 @@ public interface JsonPlaceHolderApi {
     @GET("posts/{id}/comments")
     Call<List<Comment>> getComments(@Path("id") int postId);
 
-    @GET("&q={search}&sort=n&max=5&offset=0&api_key=https://api.nal.usda.gov/ndb/search/?format=json")
+    @GET("&q={search}&sort=n&max=5&offset=0&api_key=OLhPe9BAFfszhNrO5kTx8HPmOczYzIhoVj6VlsT3")
     Call<List<Post>> getPosts(@Path("search") String search);
 
     @GET
