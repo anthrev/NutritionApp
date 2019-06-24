@@ -20,4 +20,15 @@ public interface Api {
             @Query("offset") int offset,
             @Query("api_key") String apiKey
     );
+
+    @GET("ndb/nutrients/")
+    Call<NutrientReportExample>getNutrientDetails(
+            @Query("format") String format,
+            @Query("api_key") String apiKey,
+            @Query("nutrients") int protein,
+            @Query("nutrients") int carbs,
+            @Query("nutrients") int fats,
+            @Query("nutrients") int calories,
+            @Query("ndbno") int foodNumber
+    );
 }
