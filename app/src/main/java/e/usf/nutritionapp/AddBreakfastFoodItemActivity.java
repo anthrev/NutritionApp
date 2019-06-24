@@ -1,6 +1,8 @@
 package e.usf.nutritionapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,8 +48,63 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
         listFood.setAdapter(adapter);
         listFood.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Log.d(TAG,"Item Selected: \nName: " +  foodNameList.get(position) + "\nNumber: " + foodNumberList.get(position));
+
+                Retrofit retrofit2 = new Retrofit.Builder()
+                        .baseUrl(Api.BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                Api api2 = retrofit2.create(Api.class);
+                Call<NutrientReportExample> call2 = api2.getNutrientDetails("json", apiKey, 203, 205, 204, 208, Integer.parseInt(foodNumberList.get(position)));
+                call2.enqueue(new Callback<NutrientReportExample>() {
+                    @Override
+                    public void onResponse(Call<NutrientReportExample> call, Response<NutrientReportExample> response) {
+                        if (!response.isSuccessful()){
+                            Log.d("Code: ", ""+response.code());
+                            return;
+                        }
+                        String protein = null;
+                        String carbs = null;
+                        String fat = null;
+                        String calories = null;
+                        String name = foodNameList.get(position);
+                        NutrientReportExample ex = response.body();
+
+                        List<FoodItemNutrients> foodItemNutrientsList = ex.getReport().getFoods();
+                        List<Nutrient> nutrientList = foodItemNutrientsList.get(0).getNutrients();
+
+                        for(Nutrient n:nutrientList){
+                            switch(n.getNutrient_id()){
+                                case "203":
+                                    protein = n.getValue() + "g";
+
+                                case "204":
+                                    fat = n.getValue() + "g";
+
+                                case "205":
+                                    carbs = n.getValue() + "g";
+                                    break;
+
+                                case "208":
+                                    calories = n.getValue() +"kcal";
+                            }
+                        }
+
+                        Intent intent = new Intent(AddBreakfastFoodItemActivity.this, AddFood.class);
+                        intent.putExtra("protein", protein);
+                        intent.putExtra("fat", fat);
+                        intent.putExtra("carbs", carbs);
+                        intent.putExtra("calories", calories);
+                        intent.putExtra("name", name);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<NutrientReportExample> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }
@@ -81,7 +140,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                         foodNameList.clear();
                         foodNumberList.clear();
                         FoodItemContainerContainer foodItemContainerContainer = response.body();
-                            List<FoodItem> foodItemList = foodItemContainerContainer.getList().getItem();
+                        List<FoodItem> foodItemList = foodItemContainerContainer.getList().getItem();
                         for(FoodItem f: foodItemList){
                             foodNumberList.add(f.getOffset(),f.getNdbno());
                             foodNameList.add(f.getOffset(),f.getName());
