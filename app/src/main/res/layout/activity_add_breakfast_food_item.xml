@@ -7,7 +7,7 @@
     tools:context="e.usf.nutritionapp.AddBreakfastFoodItemActivity">
 
     <ListView
-        android:id="@+id/search_food"
+        android:id="@+id/list_food"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
