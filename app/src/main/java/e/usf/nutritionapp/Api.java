@@ -18,6 +18,7 @@ public interface Api {
             @Query("sort") String sort,
             @Query("max") int max,
             @Query("offset") int offset,
+            @Query("ds") String ds,
             @Query("api_key") String apiKey
     );
 
@@ -29,6 +30,6 @@ public interface Api {
             @Query("nutrients") int carbs,
             @Query("nutrients") int fats,
             @Query("nutrients") int calories,
-            @Query("ndbno") int foodNumber
+            @Query("ndbno") String foodNumber
     );
 }
