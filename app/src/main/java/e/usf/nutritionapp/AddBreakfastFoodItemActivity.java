@@ -46,7 +46,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
 
         listFoodBreakfast = findViewById(R.id.list_food_breakfast);
         breakfastFoodList = new ArrayList<>();
-        breakfastAdapter = new ArrayAdapter(AddBreakfastFoodItemActivity.this, android.R.layout.simple_list_item_1, breakfastFoodList);
+        breakfastAdapter = new FoodListAdapter(AddBreakfastFoodItemActivity.this, R.layout.food_adapter_view, breakfastFoodList);
         listFoodBreakfast.setAdapter(breakfastAdapter);
         listFoodBreakfast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
