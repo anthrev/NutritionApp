@@ -1,8 +1,8 @@
 package e.usf.nutritionapp;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,9 +21,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,10 +38,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mEmailField = findViewById(R.id.emailField);
-        mPasswordField = findViewById(R.id.passwordField);
+        mEmailField = (EditText) findViewById(R.id.emailField);
+        mPasswordField = (EditText) findViewById(R.id.passwordField);
 
-        mRegisterButton = findViewById(R.id.Register);
+        mRegisterButton = (Button) findViewById(R.id.Register);
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override

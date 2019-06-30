@@ -2,8 +2,8 @@ package e.usf.nutritionapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,7 +44,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_breakfast_food_item);
 
-        listFoodBreakfast = findViewById(R.id.list_food_breakfast);
+        listFoodBreakfast = (ListView) findViewById(R.id.list_food_breakfast);
         breakfastFoodList = new ArrayList<>();
         breakfastAdapter = new ArrayAdapter(AddBreakfastFoodItemActivity.this, android.R.layout.simple_list_item_1, breakfastFoodList);
         listFoodBreakfast.setAdapter(breakfastAdapter);
@@ -56,7 +56,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                 //
             }
         });
-        listFood = findViewById(R.id.list_food);
+        listFood = (ListView) findViewById(R.id.list_food);
         foodNameList = new ArrayList<>();
         foodNumberList = new ArrayList<>();
         adapter = new ArrayAdapter(AddBreakfastFoodItemActivity.this, android.R.layout.simple_list_item_1, foodNameList);
@@ -210,6 +210,12 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void goToCamera(View view) {
+
+        Intent intent = new Intent(this, CameraActivity.class);
+        startActivity(intent);
     }
 
     @Override

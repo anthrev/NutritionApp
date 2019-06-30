@@ -1,15 +1,12 @@
 package e.usf.nutritionapp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import java.util.List;
 
 public class AddFood extends AppCompatActivity {
 
@@ -37,13 +34,13 @@ public class AddFood extends AppCompatActivity {
         caloriesValue = Double.valueOf(calories);
 
 
-        final TextView foodCalories = findViewById(R.id.food_calories_view);
-        final TextView foodCarbs = findViewById(R.id.food_carbs_view);
-        final TextView foodProtein = findViewById(R.id.food_protein_view);
-        final TextView foodFat = findViewById(R.id.food_fat_view);
-        final TextView foodName = findViewById(R.id.food_name_view);
-        servings = findViewById(R.id.serving_text_box);
-        TextView submitFood = findViewById(R.id.submit_food_button);
+        final TextView foodCalories = (TextView) findViewById(R.id.food_calories_view);
+        final TextView foodCarbs = (TextView) findViewById(R.id.food_carbs_view);
+        final TextView foodProtein = (TextView) findViewById(R.id.food_protein_view);
+        final TextView foodFat = (TextView) findViewById(R.id.food_fat_view);
+        final TextView foodName = (TextView) findViewById(R.id.food_name_view);
+        servings = (TextView) findViewById(R.id.serving_text_box);
+        TextView submitFood = (TextView) findViewById(R.id.submit_food_button);
 
         submitFood.setOnClickListener(new View.OnClickListener() {
             @Override

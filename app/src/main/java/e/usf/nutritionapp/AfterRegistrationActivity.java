@@ -2,9 +2,8 @@ package e.usf.nutritionapp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,11 +34,11 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_registration);
 
-        weightText = findViewById(R.id.weight_text);
-        goalWeightText = findViewById(R.id.goal_weight_text);
-        submitButton = findViewById(R.id.submit_button);
-        heightText = findViewById(R.id.height);
-        ageText = findViewById(R.id.age);
+        weightText = (EditText) findViewById(R.id.weight_text);
+        goalWeightText = (EditText) findViewById(R.id.goal_weight_text);
+        submitButton = (Button) findViewById(R.id.submit_button);
+        heightText = (EditText) findViewById(R.id.height);
+        ageText = (EditText) findViewById(R.id.age);
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {

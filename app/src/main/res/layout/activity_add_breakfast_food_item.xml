@@ -13,6 +13,13 @@
         android:layout_height="370dp"
         android:padding="20dp" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan Barcode"
+        android:onClick="goToCamera"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
