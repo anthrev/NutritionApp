@@ -70,7 +70,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/passwordField" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/food_details2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50dp"
@@ -97,7 +97,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:layout_constraintTop_toBottomOf="@+id/food_details2"
                 app:layout_constraintVertical_bias="0.616" />
 
         </LinearLayout>

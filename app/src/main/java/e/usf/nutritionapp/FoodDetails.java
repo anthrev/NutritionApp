@@ -23,6 +23,15 @@ public class FoodDetails {
         this.servings = servings;
     }
 
+    public FoodDetails(){
+        this.calories = 0;
+        this.protein = 0;
+        this.carbohydrates = 0;
+        this.fat = 0;
+        this.name = "test";
+        this.servings = 0;
+    }
+
     public double getCalories() {
         return calories;
     }

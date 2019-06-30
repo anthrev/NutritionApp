@@ -1,11 +1,22 @@
 package e.usf.nutritionapp;
 
+import java.util.ArrayList;
+
 public class Member {
     private String gender, goals;
     private float weight, goalWeight;
     private double weeklyGoals, age, height;
     double caloriesBurnedPerDay;
     double goalCalories;
+    private ArrayList<FoodDetails> breakfastFoodsEaten;
+
+    public ArrayList<FoodDetails> getBreakfastFoodsEaten() {
+        return breakfastFoodsEaten;
+    }
+
+    public void setBreakfastFoodsEaten(ArrayList<FoodDetails> breakfastFoodsEaten) {
+        this.breakfastFoodsEaten = breakfastFoodsEaten;
+    }
 
     public Member(String gender, String goals, float weight, float goalWeight, double weeklyGoals, double age, double height, double caloriesBurnedPerDay, double goalCalories){
         this.gender = gender;
@@ -111,6 +122,10 @@ public class Member {
                 return (caloriesToConsume / 7 + getCaloriesBurnedPerDay());
             }
         }
+    }
+
+    public double getGoalCalories1(){
+        return goalCalories;
     }
 
     public void setGoalCalories(double goalCalories){
