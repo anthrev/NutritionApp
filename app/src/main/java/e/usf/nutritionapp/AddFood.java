@@ -13,7 +13,7 @@ import java.util.List;
 
 public class AddFood extends AppCompatActivity {
 
-    private int servingAmount;
+    private int servingAmount = 1;
     private TextView servings;
     private double caloriesValue;
     private double carbsValue;

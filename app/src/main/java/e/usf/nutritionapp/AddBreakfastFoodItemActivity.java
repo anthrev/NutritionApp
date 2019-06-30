@@ -2,6 +2,7 @@ package e.usf.nutritionapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +47,40 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
     private double caloriesEaten;
     private ArrayAdapter breakfastAdapter;
     private ArrayList<FoodDetails> breakfastFoodList;
+    private FoodDetails foodDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_breakfast_food_item);
 
-        listFoodBreakfast = findViewById(R.id.list_food_breakfast);
         breakfastFoodList = new ArrayList<>();
+
+        //Get Food Details List from the foods that the user has eaten(Firebase Database)
+        FirebaseAuth firebaseAuth;
+        DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        databaseReference.child(user.getUid()).child("breakfastFoodsEaten").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+
+                for (DataSnapshot child: children) {
+                    foodDetails = child.getValue(FoodDetails.class);
+                    breakfastFoodList.add(foodDetails);
+                    breakfastAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        listFoodBreakfast = findViewById(R.id.list_food_breakfast);
         breakfastAdapter = new FoodListAdapter(AddBreakfastFoodItemActivity.this, R.layout.food_adapter_view, breakfastFoodList);
         listFoodBreakfast.setAdapter(breakfastAdapter);
         listFoodBreakfast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -224,12 +259,21 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                 double protein = data.getDoubleExtra("protein", 0);
                 String name = data.getStringExtra("name");
                 int servings = data.getIntExtra("calories", 0);
-                FoodDetails foodDetails = new FoodDetails(calories,protein,carbohydrates, fat, name, servings);
-                breakfastFoodList.add(foodDetails);
+                FoodDetails foodDetailsNew = new FoodDetails(calories,protein,carbohydrates, fat, name, servings);
+                breakfastFoodList.add(foodDetailsNew);
                 breakfastAdapter.notifyDataSetChanged();
-
                 searchView.setQuery("",false);
                 resetMenu();
+
+                FirebaseAuth firebaseAuth;
+                DatabaseReference databaseReference;
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+                firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                databaseReference.child(user.getUid()).child("breakfastFoodsEaten").removeValue();
+                databaseReference.child(user.getUid()).child("breakfastFoodsEaten").setValue(breakfastFoodList);
+                finish();
+
             }
             if(resultCode == RESULT_CANCELED){
                 resetMenu();

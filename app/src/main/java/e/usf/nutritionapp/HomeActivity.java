@@ -18,6 +18,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = "HomeActivity";
@@ -39,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         Member member = new Gson().fromJson(jsonMember, Member.class);
 
-        goalCalories = member.getGoalCalories();
+        goalCalories = member.getGoalCalories1();
         weight = member.getWeight();
         goal_weight = member.getGoalWeight();
 
@@ -99,4 +101,5 @@ public class HomeActivity extends AppCompatActivity {
     public double getGoalWeight(){
         return goal_weight;
     }
+
 }

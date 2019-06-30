@@ -17,6 +17,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class AfterRegistrationActivity extends AppCompatActivity {
 
     String TAG = "First Time Registration: ";
@@ -49,7 +51,7 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                 height = Double.valueOf(heightText.getText().toString());
                 age = Double.valueOf(ageText.getText().toString());
                 weight = Float.valueOf(weightText.getText().toString());
-                goalWeight = Float.valueOf(weightText.getText().toString());
+                goalWeight = Float.valueOf(goalWeightText.getText().toString());
 
                 if(goals == null || gender == null || weight == 0 || goalWeight == 0 || weeklyGoals == 0 || age == 0 || height == 0){
                     Context context = getApplicationContext();
@@ -68,6 +70,7 @@ public class AfterRegistrationActivity extends AppCompatActivity {
                     newMember.setHeight(height);
                     newMember.setAge(age);
                     newMember.setCaloriesBurnedPerDay(newMember.getCaloriesBurnedPerDay());
+
 
 
                     String memberInfo = "Goals: " + newMember.getGoals()
@@ -151,7 +154,6 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference.child(user.getUid()).setValue(member);
         Toast.makeText(this, "Information Saved...", Toast.LENGTH_SHORT).show();
-
     }
 }
 
