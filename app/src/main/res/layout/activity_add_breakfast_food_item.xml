@@ -16,10 +16,14 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="match_parent"
+        android:layout_width="164dp"
         android:layout_height="wrap_content"
-        android:text="Scan Barcode"
-        android:onClick="goToCamera"/>
+        android:layout_below="@+id/list_food"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="221dp"
+        android:layout_marginTop="262dp"
+        android:onClick="goToCamera"
+        android:text="Scan Barcode" />
 
 
 

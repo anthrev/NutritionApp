@@ -1,7 +1,10 @@
 package e.usf.nutritionapp;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,12 +18,18 @@ import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.gson.Gson;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.List;
 
 public class CameraActivity extends AppCompatActivity {
 
     final String TAG = "Camera";
+
+
 
     private CameraKitView cameraKitView;
 
@@ -57,6 +66,8 @@ public class CameraActivity extends AppCompatActivity {
 
     private void getBarcode(CameraKitView cameraKitView){
 
+        final BarcodeAPI BCApi = new BarcodeAPI();
+
         FirebaseVisionBarcodeDetectorOptions options =
                 new FirebaseVisionBarcodeDetectorOptions.Builder()
                         .setBarcodeFormats(
@@ -78,7 +89,8 @@ public class CameraActivity extends AppCompatActivity {
                             public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
                                 // Task completed successfully
                                 for(FirebaseVisionBarcode barcode: barcodes){
-                                    Log.d(TAG, barcode.getDisplayValue());
+                                    BCApi.execute(barcode.getDisplayValue());
+                                    Log.d(TAG, "Finished execution");
                                 }
                             }
                         })
@@ -121,6 +133,72 @@ public class CameraActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         cameraKitView.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
+    private class BarcodeAPI extends AsyncTask<String, String, String> {
+
+        final String TAG = "BarcodAPI";
+        public String finalResult;
+
+        public class RootObject
+        {
+            public ProductInfo[] products;
+        }
+
+        public String doInBackground(String... barcode)
+        {
+            try
+            {
+                Log.d(TAG, "Looking up...");
+                Log.d(TAG, "Barcode = " + barcode[0]);
+                URL url = new URL("https://api.barcodelookup.com/v2/products?barcode="
+                        + barcode[0] +"&formatted=y&key=btplha4k3db85us01bf8740f9h5c77");
+                Log.d(TAG, url.toString());
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                Log.d(TAG, "Opened Stream");
+                String str = "";
+                String data = "";
+                while (null != (str= br.readLine())) {
+                    data+=str;
+                }
+
+                Log.d(TAG, "Read data");
+
+                Gson g = new Gson();
+
+                RootObject value = g.fromJson(data, RootObject.class);
+
+                Log.d(TAG, "Returning...");
+                String name = value.products[0].product_name;
+
+
+                return name;
+            }
+            catch (Exception ex)
+            {
+                ex.printStackTrace();
+            }
+
+            return "Error: something went wrong";
+        }
+
+        protected void onPostExecute(String result) {
+            // execution of result of Long time consuming operation
+            returnValue(result);
+        }
+
+
+    }
+
+    private void returnValue(String result)
+    {
+        Log.d(TAG, result);
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_TEXT, result);
+        i.setType("text/plain");
+        setResult(CameraActivity.RESULT_OK, i);
+        finish();
     }
 
 

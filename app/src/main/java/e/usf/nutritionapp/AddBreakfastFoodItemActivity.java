@@ -186,6 +186,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
         inflater.inflate(R.menu.test_menu, menu);
         MenuItem item = menu.findItem(R.id.search_food);
         searchView = (SearchView)item.getActionView();
+        searchView.setIconifiedByDefault(false);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -255,7 +256,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
     public void goToCamera(View view) {
 
         Intent intent = new Intent(this, CameraActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 2);
     }
 
     @Override
@@ -288,6 +289,15 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
             }
             if(resultCode == RESULT_CANCELED){
                 resetMenu();
+            }
+        }
+        if(requestCode == 2)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                Log.d(TAG, "got result");
+                String productName = data.getStringExtra(Intent.EXTRA_TEXT);
+                searchView.setQuery(productName, false);
             }
         }
     }
