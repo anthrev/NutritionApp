@@ -119,7 +119,7 @@
                 android:textSize="26dp" />
 
             <EditText
-                android:id="@+id/weight_text"
+                android:id="@+id/set_weight_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -134,7 +134,7 @@
                 android:textSize="26dp" />
 
             <EditText
-                android:id="@+id/goal_weight_text"
+                android:id="@+id/set_goal_weight_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"

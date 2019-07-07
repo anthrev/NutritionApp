@@ -35,8 +35,8 @@ public class AfterRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after_registration);
 
-        weightText = (EditText) findViewById(R.id.weight_text);
-        goalWeightText = (EditText) findViewById(R.id.goal_weight_text);
+        weightText = (EditText) findViewById(R.id.set_weight_text);
+        goalWeightText = (EditText) findViewById(R.id.set_goal_weight_text);
         submitButton = (Button) findViewById(R.id.submit_button);
         heightText = (EditText) findViewById(R.id.height);
         ageText = (EditText) findViewById(R.id.age);
