@@ -88,7 +88,7 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:longClickable="false"
-                android:text="exercise"
+                android:text="0"
                 android:textSize="20sp" />
 
             <TextView
@@ -190,6 +190,48 @@
                 android:scrollbarAlwaysDrawVerticalTrack="false" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/add_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/create_meal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="132dp"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="Add Exercise"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/add_excercise_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawingCacheQuality="auto"
+                android:gravity="center"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarAlwaysDrawVerticalTrack="false" />
+
+
+
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
 
