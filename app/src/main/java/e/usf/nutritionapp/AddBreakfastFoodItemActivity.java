@@ -46,7 +46,7 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
     private ArrayAdapter adapter;
     private ListView listFood;
     private ListView listFoodBreakfast;
-    private double caloriesEaten;
+    private double caloriesEaten = 0;
     private ArrayAdapter breakfastAdapter;
     private ArrayList<FoodDetails> breakfastFoodList;
     private FoodDetails foodDetails;
@@ -63,10 +63,10 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
 
         //Get Food Details List from the foods that the user has eaten(Firebase Database)
         FirebaseAuth firebaseAuth;
-        DatabaseReference databaseReference;
+        final DatabaseReference databaseReference;
         databaseReference = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
         databaseReference.child(user.getUid()).child("breakfastFoodsEaten").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -76,7 +76,9 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                     foodDetails = child.getValue(FoodDetails.class);
                     breakfastFoodList.add(foodDetails);
                     breakfastAdapter.notifyDataSetChanged();
+                    caloriesEaten += foodDetails.getCalories();
                 }
+                databaseReference.child(user.getUid()).child("caloriesEaten").setValue(caloriesEaten);
             }
 
             @Override
@@ -284,6 +286,11 @@ public class AddBreakfastFoodItemActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 databaseReference.child(user.getUid()).child("breakfastFoodsEaten").removeValue();
                 databaseReference.child(user.getUid()).child("breakfastFoodsEaten").setValue(breakfastFoodList);
+
+                Intent resultIntent = new Intent();
+                resultIntent.putExtra("calories", caloriesEaten);
+                setResult(RESULT_OK, resultIntent);
+
                 finish();
 
             }

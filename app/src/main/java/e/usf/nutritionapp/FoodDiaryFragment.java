@@ -10,6 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 public class FoodDiaryFragment extends Fragment {
 
     TextView addBreakfastItem;
@@ -17,6 +30,11 @@ public class FoodDiaryFragment extends Fragment {
     TextView addDinnerItem;
     TextView addSnackItem;
     TextView goalCalories;
+    TextView caloriesEaten;
+    TextView remainingCalories;
+
+    private FoodDetails foodDetails;
+    private String calories = "0";
 
     @Nullable
     @Override
@@ -28,6 +46,12 @@ public class FoodDiaryFragment extends Fragment {
 
         goalCalories = view.findViewById(R.id.goal_calories);
         goalCalories.setText(goalCals);
+
+        remainingCalories = view.findViewById(R.id.remaining_cals);
+        remainingCalories.setText(goalCals);
+
+        caloriesEaten = view.findViewById(R.id.calories_eaten);
+        caloriesEaten.setText(calories);
 
         addBreakfastItem = view.findViewById(R.id.add_food_breakfast);
         addLunchItem = view.findViewById(R.id.add_food_lunch);
@@ -65,5 +89,25 @@ public class FoodDiaryFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+                double calories = data.getDoubleExtra("calories", 0);
+                caloriesEaten.setText(String.valueOf(calories));
+                String stringGCals = goalCalories.getText().toString();
+                String stringECals = caloriesEaten.getText().toString();
+                double doubleGCals = Double.parseDouble(stringGCals);
+                double doubleECals = Double.parseDouble(stringECals);
+                double doubleRCals = doubleGCals - doubleECals;
+
+                remainingCalories.setText(String.valueOf(doubleRCals));
+            }
+            if (resultCode == RESULT_CANCELED) {
+
+            }
+        }
     }
 }

@@ -58,6 +58,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/calories_eaten"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -106,6 +107,7 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/remaining_cals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
